@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace VoteBot_SkypePlugin
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         private Database database = new Database("localhost", "skypebot", "root", "");
         private SkypeHandler skypeHandler;
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
             skypeHandler = new SkypeHandler(this);
@@ -41,7 +41,12 @@ namespace VoteBot_SkypePlugin
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-            this.ShowInTaskbar = true;
+            this.ShowInTaskbar = false;
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }

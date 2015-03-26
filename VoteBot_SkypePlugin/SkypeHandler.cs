@@ -11,9 +11,9 @@ namespace VoteBot_SkypePlugin
     class SkypeHandler
     {
         private Skype skype;
-        private Form1 mMainFrm;
+        private frmMain mMainFrm;
 
-        public SkypeHandler(Form1 aMainFrm)
+        public SkypeHandler(frmMain aMainFrm)
         {
             try
             {
