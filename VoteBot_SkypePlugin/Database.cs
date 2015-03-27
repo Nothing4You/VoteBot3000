@@ -31,6 +31,7 @@ namespace VoteBot_SkypePlugin
                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
                 connection = new MySqlConnection(connectionString);
+                this.OpenConnection();
             }
             catch (Exception ex)
             {
@@ -83,6 +84,7 @@ namespace VoteBot_SkypePlugin
 
                     //Execute command
                     cmd.ExecuteNonQuery();
+                    this.CloseConnection();
                 }
             }
             catch (Exception ex)
