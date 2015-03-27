@@ -294,5 +294,107 @@ namespace VoteBot_SkypePlugin
                 return 0;
             }
         }
+
+        public void InsertPassword(string aTable, string aName, string aPassword)
+        {
+            try
+            {
+                string query = "INSERT INTO " + aTable + " (skypename, password) VALUES ('" + aName + "', '" + aPassword + "')";
+
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    //Execute command
+                    cmd.ExecuteNonQuery();
+                    this.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                mMainFrm.printMessage(ex.Message);
+            }
+        }
+
+        public void UpdatePassword(string aTable, string aName, string aPassword)
+        {
+            try
+            {
+                string query = "UPDATE " + aTable + " SET password = '" + aPassword + "' WHERE skypename = '" + aName + "'";
+
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create mysql command
+                    MySqlCommand cmd = new MySqlCommand();
+                    //Assign the query using CommandText
+                    cmd.CommandText = query;
+
+                    //Assign the connection using Connection
+                    cmd.Connection = connection;
+
+                    //Execute query
+                    cmd.ExecuteNonQuery();
+
+                    //close connection
+                    this.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                mMainFrm.printMessage(ex.Message);
+            }
+        }
+
+        public List<string>[] SelectPassword(string aName)
+        {
+            try
+            {
+                string query = "SELECT * FROM datensaetze WHERE skypename = '" + aName + "'";
+
+                //Create a list to store the result
+                List<string>[] list = new List<string>[5];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["id"] + "");
+                        list[1].Add(dataReader["skypename"] + "");
+                        list[2].Add(dataReader["password"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();
+
+                    //return list to be displayed
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                mMainFrm.printMessage(ex.Message);
+                return null;
+            }
+        }
     }
 }

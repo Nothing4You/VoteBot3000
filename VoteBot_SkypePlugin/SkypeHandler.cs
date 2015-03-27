@@ -65,6 +65,12 @@ namespace VoteBot_SkypePlugin
                             cmdstatus();
                         }
 
+                        if (command.StartsWith("setpassword"))
+                        {
+                            string[] commandsplit = command.Split(' ');
+                            cmdsetpassword(msg.Sender.Handle, commandsplit[1]);
+                        }
+
                     }
 
                 }
@@ -114,6 +120,12 @@ namespace VoteBot_SkypePlugin
             {
                 skype.SendMessage(sender, "Du hast keine Berechtigung um diesen Befehl zu nutzen");
             }
+        }
+
+        private void cmdsetpassword(string sender, string password)
+        {
+            mMainFrm.setPassword(sender, password);
+            skype.SendMessage(sender, "Passwort gesetzt.");
         }
 
         private void cmdstatus()
