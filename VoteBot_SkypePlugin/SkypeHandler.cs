@@ -27,7 +27,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
             }
         }
 
@@ -86,6 +86,14 @@ namespace VoteBot_SkypePlugin
                     mMainFrm.update(sender, Convert.ToString(place), time);
                     skype.SendMessage(sender, "Erfolgreich für " + Convert.ToString(place) + " um " + time + " abgestimmt");
                 }
+                else
+                {
+                    skype.SendMessage(sender, time + " ist nicht gültig!");
+                }
+            }
+            else
+            {
+                skype.SendMessage(sender, Convert.ToString(place) + " existiert nicht!");
             }
         }
 

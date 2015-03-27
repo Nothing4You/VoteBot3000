@@ -59,6 +59,8 @@
             this.Name = "frmMain";
             this.Text = "VoteBot SkypePlugin";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResizeBegin += new System.EventHandler(this.frmMain_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.frmMain_ResizeEnd);
             this.ResumeLayout(false);
 
         }

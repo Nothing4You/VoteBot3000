@@ -12,12 +12,18 @@ namespace VoteBot_SkypePlugin
 {
     public partial class frmMain : Form
     {
-        private Database database = new Database("localhost", "skypebot", "root", "");
+        private Database database ;
         private SkypeHandler skypeHandler;
         public frmMain()
         {
             InitializeComponent();
             skypeHandler = new SkypeHandler(this);
+            database = new Database(this, "localhost", "skypebot", "root", "");
+        }
+
+        public void printMessage(string message)
+        {
+            listBox.Items.Add(message);
         }
 
         public void update(string sender, string place, string time)
@@ -47,6 +53,19 @@ namespace VoteBot_SkypePlugin
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private void frmMain_ResizeEnd(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                this.ShowInTaskbar = false;
+            }
+        }
+
+        private void frmMain_ResizeBegin(object sender, EventArgs e)
+        {
+            this.ShowInTaskbar = true;
         }
     }
 }

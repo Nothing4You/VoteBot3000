@@ -15,12 +15,14 @@ namespace VoteBot_SkypePlugin
         private string database;
         private string uid;
         private string password;
+        private frmMain mMainFrm;
 
         //Constructor
-        public Database(string aServer, string aDatabase, string aUID, string aPassword)
+        public Database(frmMain aMainFrm, string aServer, string aDatabase, string aUID, string aPassword)
         {
             try
             {
+                mMainFrm = aMainFrm;
                 server = aServer;
                 database = aDatabase;
                 uid = aUID;
@@ -31,11 +33,11 @@ namespace VoteBot_SkypePlugin
                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
                 connection = new MySqlConnection(connectionString);
-                this.OpenConnection();
+                //this.OpenConnection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
             }
         }
 
@@ -49,7 +51,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
                 return false;
             }
         }
@@ -64,7 +66,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
                 return false;
             }
         }
@@ -89,7 +91,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
             }
         }
 
@@ -128,7 +130,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
             }
         }
 
@@ -148,7 +150,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
             }
         }
 
@@ -201,7 +203,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
                 return null;
             }
         }
@@ -254,7 +256,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
                 return null;
             }
         }
@@ -288,7 +290,7 @@ namespace VoteBot_SkypePlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mMainFrm.printMessage(ex.Message);
                 return 0;
             }
         }
