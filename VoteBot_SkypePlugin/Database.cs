@@ -352,7 +352,7 @@ namespace VoteBot_SkypePlugin
         {
             try
             {
-                string query = "SELECT * FROM datensaetze WHERE skypename = '" + aName + "'";
+                string query = "SELECT * FROM user WHERE skypename = '" + aName + "'";
 
                 //Create a list to store the result
                 List<string>[] list = new List<string>[5];
