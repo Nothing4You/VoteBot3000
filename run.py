@@ -95,8 +95,6 @@ class MySkype(SkypeEventLoop):
               if len(parts) < 3:
                 parts.append("1200")
               self.castVote(event.msg.chat, event.msg.userId, parts[1], parts[2])
-              if event.msg.userId == "matthias.neid" and datetime.datetime.today().date() == datetime.datetime.strptime("2017-01-16", "%Y-%m-%d").date():
-                self.castVote(event.msg.chat, "maiiko94", parts[1], parts[2])
             else:
               self.showVoteHelp(event.msg.userId)
 
@@ -257,7 +255,6 @@ class MySkype(SkypeEventLoop):
         self.run = False
 
 def main():
-  #logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("skpy.log"), logging.StreamHandler()])
   logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("skpy.log")])
 
   sk = MySkype(SKYPE_USER, SKYPE_PASS, tokenFile=".tokens")
